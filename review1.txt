@@ -1,0 +1,13 @@
+Christabel Escarez
+CS260 - Spring 2019
+Project #1 Efficiency Review
+
+1) How well did the data structure selected perform for the assigned application?
+
+2) Would a different data structure work better? If so, which one and why...
+
+3) What was efficient about your design and use of the data structure?
+
+4) What was not efficient?
+
+5) What would you do differently if you had more time to solve the problem?
