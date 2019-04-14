@@ -16,7 +16,7 @@
 using namespace std;
 
 int main() {
-	
+	ArtistList artistRoster(1, "artists.txt")	
 	cout << "Welcome to CS260 Record Label Artist Roster. Would you like to: \nA. View Artist Roster\nB. Add an Artist\nC. Search for an Artist\nD. Search for a Song" << endl;
 
 }

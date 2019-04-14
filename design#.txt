@@ -5,7 +5,7 @@ Sources: https://blog.testlodge.com/how-to-write-test-cases-for-software-with-sa
 
 Design Considerations:
 
-The first design consideration I had was considering what experience I wanted the user to have. While I could program a database of artists and their songs, I had to also think about why a user would be trying to access this information. In considering the user and the program's use case, I then thought of data flow for an ideal user experience. 
+The first design consideration I had was considering what experience I wanted the user to have. While I could program a database of artists and their songs, I had to also think about why a user would be trying to access this information. In considering the user and the program's use case, I then considered data flow in an ideal user experience. 
 
 For this program and the target user of a record label employee tracking their artists, the user would first launch the program. The user will then receive a welcome message and a menu, allowing the user to view the complete artist list, search the artist list (by artist name, or song title), modify artist info, add an artist, remove an artist.
 
@@ -14,10 +14,31 @@ If the user opts to modify artist info, there is a second menu so the user may v
 If the user opts to view the list of songs, following the display of the song list, the user is shown a menu to
 add a song, remove a song, and remove songs below a specified number of view counts.
 
+For modularity, I will have separate classes for individual songs, individual artists, song lists, artist list, and the main calling environment. Both the song list and artist list will be singly linked lists, sorted by view count. List traversal to be recursive for displaying the lists.
+
+The largest design consideration I had was how to store the song lists for each artist. For the artist list, I had a single artist roster file with all artist class member data. If I were to do the same for the song lists, there would be a separate file for each artist's songs. In addition to modifying the artist roster storage file, the program would then create a storage file for each added artist, and remove a storage file for each removed artist.
+
+Else, I could have a single, large file that holds all information, but has a flag between artists to signal the end of a song list and the beginning of a new artist entry.
+
+SMALLER DESIGN CONSIDERATIONS:
+
+Song length: two int's or a double
+
+Popularity: by veiws or likes
+
+Artist List: display design
+
+Song list: display design
+
+--
+
+Invalid Inputs:
+Each menu user input will be checked for legal usage, giving the user three attempts to submit a valid entry before the program aborts. Cstring user inputs for searches will be case insensitive, but will require an exact match for artist name or song title. There will be errors reported to the user for any instance of input failure, including instances the song or artist data file fails to load due to incorrect filenname.
+
 
 Number / type of ADTs: 
 
-Invalid Inputs
+
 ____
 ADTs:
 
