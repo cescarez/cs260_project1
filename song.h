@@ -6,7 +6,7 @@
 #ifndef SONG_H
 #define SONG_H
 
-using namespace std;
+#include "inputTools.h"
 
 const int MAX_SIZE = 100;
 
@@ -24,17 +24,19 @@ public:
 	friend ostream &operator<< (ostream &output, const Song &tempSong);
 	//accessor functions
 	//returns local variable (argument) equal to private instance data member
-	void getTitle(char title[]) const;
-	void getLength(int &lengthMin, int &lengthSec) const;
-	void getViews(int &viewCount) const;
-	void getLikes(int &likeCount) const;
+	void printSong(const Song &aSong) const {
+		cout << aSong;	//function relies on overloaded extraction operator
+	}
+	void getTitle(char songTitle[]) const;
+	void getLength(int &songLengthMin, int &songLengthSec) const;
+	void getViews(int &songViews) const;
+	void getLikes(int &songLikes) const;
 	//mutator functions
 	//sets local instance members to passed in values
-	void setTitle(const char title[]);
-	void setLength(const int &lengthMin, const int &lengthSec);
-	void setViews(const int &viewCount);
-	void setLikes(const int &likeCount);
-	int editViews(const int &newViewCount); 
+	void setTitle(const char songTitle[]);
+	void setLength(const int &songLengthMin, const int &songLengthSec);
+	void setViews(const int &songViews);
+	void setLikes(const int &songLikes);
 private:
 	char *songTitle;
 	int songLengthMin;

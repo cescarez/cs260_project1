@@ -7,4 +7,8 @@
 #define INPUT_TOOLS_H
 
 
+const int MAX_SIZE = 100;
+
+
+
 #endif

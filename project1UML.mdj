@@ -135,7 +135,7 @@
 											"top": 622,
 											"width": 316.15771484375,
 											"height": 13,
-											"text": "-songTitle",
+											"text": "-songTitle: cstring",
 											"horizontalAlignment": 0
 										},
 										{
@@ -152,7 +152,7 @@
 											"top": 637,
 											"width": 316.15771484375,
 											"height": 13,
-											"text": "-songLengthMin",
+											"text": "-songLengthMinL: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -169,7 +169,7 @@
 											"top": 652,
 											"width": 316.15771484375,
 											"height": 13,
-											"text": "-songLengthSec",
+											"text": "-songLengthSec: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -186,7 +186,7 @@
 											"top": 667,
 											"width": 316.15771484375,
 											"height": 13,
-											"text": "-songViews",
+											"text": "-songViews: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -203,7 +203,7 @@
 											"top": 682,
 											"width": 316.15771484375,
 											"height": 13,
-											"text": "-songLikes",
+											"text": "-songLikes: int",
 											"horizontalAlignment": 0
 										}
 									],
@@ -293,40 +293,6 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAFqFVE2Qu2eI6g=",
-											"_parent": {
-												"$ref": "AAAAAAFqFUq7e+1LRGU="
-											},
-											"model": {
-												"$ref": "AAAAAAFqFVE19O2bmHA="
-											},
-											"font": "Arial;13;0",
-											"left": 933,
-											"top": 765,
-											"width": 316.15771484375,
-											"height": 13,
-											"text": "-editLikes()",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAFqFVHsmu2r9tU=",
-											"_parent": {
-												"$ref": "AAAAAAFqFUq7e+1LRGU="
-											},
-											"model": {
-												"$ref": "AAAAAAFqFVHsX+2oQ2E="
-											},
-											"font": "Arial;13;0",
-											"left": 933,
-											"top": 780,
-											"width": 316.15771484375,
-											"height": 13,
-											"text": "-editViews()",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
 											"_id": "AAAAAAFqFX75O++RbQY=",
 											"_parent": {
 												"$ref": "AAAAAAFqFUq7e+1LRGU="
@@ -336,7 +302,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 933,
-											"top": 795,
+											"top": 765,
 											"width": 316.15771484375,
 											"height": 13,
 											"text": "+getTitle(char title[])",
@@ -353,7 +319,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 933,
-											"top": 810,
+											"top": 780,
 											"width": 316.15771484375,
 											"height": 13,
 											"text": "+getLength(int &lengthMin, int &lengthSec)",
@@ -370,7 +336,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 933,
-											"top": 825,
+											"top": 795,
 											"width": 316.15771484375,
 											"height": 13,
 											"text": "+getViews(int &viewCount)",
@@ -387,7 +353,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 933,
-											"top": 840,
+											"top": 810,
 											"width": 316.15771484375,
 											"height": 13,
 											"text": "+getLikes(int &likeCount)",
@@ -404,7 +370,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 933,
-											"top": 855,
+											"top": 825,
 											"width": 316.15771484375,
 											"height": 13,
 											"text": "+setTitle(const char title[])",
@@ -421,7 +387,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 933,
-											"top": 870,
+											"top": 840,
 											"width": 316.15771484375,
 											"height": 13,
 											"text": "+setLength(const int &lengthMin, const int &lengthSec)",
@@ -438,7 +404,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 933,
-											"top": 885,
+											"top": 855,
 											"width": 316.15771484375,
 											"height": 13,
 											"text": "+setViews(const int &viewCount)",
@@ -455,7 +421,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 933,
-											"top": 900,
+											"top": 870,
 											"width": 316.15771484375,
 											"height": 13,
 											"text": "+setLikes(const int &viewCount)",
@@ -466,7 +432,7 @@
 									"left": 928,
 									"top": 700,
 									"width": 326.15771484375,
-									"height": 218
+									"height": 188
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -4463,7 +4429,7 @@
 							},
 							"name": "songTitle",
 							"visibility": "private",
-							"type": ""
+							"type": "cstring"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4471,9 +4437,9 @@
 							"_parent": {
 								"$ref": "AAAAAAFqFUq7d+1CvPM="
 							},
-							"name": "songLengthMin",
+							"name": "songLengthMinL",
 							"visibility": "private",
-							"type": ""
+							"type": "int"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4483,7 +4449,7 @@
 							},
 							"name": "songLengthSec",
 							"visibility": "private",
-							"type": ""
+							"type": "int"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4493,7 +4459,7 @@
 							},
 							"name": "songViews",
 							"visibility": "private",
-							"type": ""
+							"type": "int"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4503,7 +4469,7 @@
 							},
 							"name": "songLikes",
 							"visibility": "private",
-							"type": ""
+							"type": "int"
 						}
 					],
 					"operations": [
@@ -4647,25 +4613,6 @@
 								}
 							],
 							"specification": "display all song information\n"
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFqFVE19O2bmHA=",
-							"_parent": {
-								"$ref": "AAAAAAFqFUq7d+1CvPM="
-							},
-							"name": "editLikes",
-							"visibility": "private"
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFqFVHsX+2oQ2E=",
-							"_parent": {
-								"$ref": "AAAAAAFqFUq7d+1CvPM="
-							},
-							"name": "editViews",
-							"visibility": "private",
-							"specification": "edit songViews; reinserts node into appropriate location in list"
 						},
 						{
 							"_type": "UMLOperation",

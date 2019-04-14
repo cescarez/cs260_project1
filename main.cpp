@@ -2,6 +2,7 @@
 //CS260 - Spring 2019
 //Project #1 - main.cpp
 //Sources: https://www.codesdope.com/blog/article/linked-list-traversal-using-loop-and-recursion-in-/
+	 //	   https://www.programiz.com/cpp-programming/enumeration
 //Program maintains a database of artists at a record label, sorted by descending popularity.
 
 #include "inputTools.h"

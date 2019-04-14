@@ -9,9 +9,8 @@
 
 using namespace std;
 
-/*CONSTRUCTOR*/
-Song::Song() 
-{
+/*SONG CONSTRUCTOR*/
+Song::Song() {
 	songTitle = new char[strlen("unknown title")+1];
 	strcpy(songTitle, "unknown title");
 	songLengthMin = 0;
@@ -21,9 +20,8 @@ Song::Song()
 
 }
 
-/*DESTRUCTOR*/
-Song::~Song()
-{
+/*SONG DESTRUCTOR*/
+Song::~Song() {
 	if (songTitle != NULL) {
 		delete [] songTitle;
 	}
@@ -33,9 +31,8 @@ Song::~Song()
 	songLikes = 0;
 }
 
-/*COPY CONSTRUCTOR*/
-Song::Song(const Song &otherSong)
-{
+/*SONG COPY CONSTRUCTOR*/
+Song::Song(const Song &otherSong) {
 	this->songTitle = new char[strlen(otherSong.songTitle)+1];
 	songTitle = otherSong.songTitle;
 	songLengthMin = otherSong.songLengthMin;
@@ -44,9 +41,8 @@ Song::Song(const Song &otherSong)
 	songLikes = otherSong.songLikes;
 } 
 
-/*OVERLOADED OPERATORS*/
-const Song& Song::operator= (const Song& otherSong)
-{
+/*SONG OVERLOADED OPERATORS*/
+const Song& Song::operator= (const Song& otherSong) {
 	//create temporary local variable to store private value retrieved via accessor function
 	char tempTitle[MAX_SIZE];
 	
@@ -69,3 +65,50 @@ ostream& operator<< (ostream &output, const Song &tempSong) {
 	output << tempSong.songTitle << tempSong.songLengthMin << tempSong.songLengthSec << tempSong.songViews << tempSong.songLikes << endl;  
 	return output;
 }
+
+//----------------------------------//
+/*SONG ACCESSOR FUNCTION DEFINITIONS*/
+//----------------------------------//
+
+void Song::getTitle(char songTitle[]) const {
+	strcpy(songTitle, this->songTitle);
+}
+
+void Song::getLength(int &songLengthMin, int &songLengthSec) const {
+	songLengthMin = this->songLengthMin;
+	songLengthSec = this->songLengthSec;
+}
+
+void Song::getViews(int &songViews) const {
+	songViews = this->songViews;
+}
+
+void Song::getLikes(int &songLikes) const {
+	songLikes = this->songLikes;
+}
+
+//---------------------------------//
+/*SONG MUTATOR FUNCTION DEFINITIONS*/
+//---------------------------------//
+
+void Song::setTitle(const char title[]) {
+	if (this->songTitle) {
+		delete [] this->songTitle;
+	}
+	this->songTitle = new char[strlen(songTitle)+1];
+	strcpy(this->songTitle, songTitle);	
+}
+
+void Song::setLength(const int &songLengthMin, const int &songLengthSec) {
+	this->songLengthMin = songLengthMin;
+	this->songLengthSec = songLengthSec;	
+}
+
+void Song::setViews(const int &songViews) {
+	this->songViews = songViews;
+}
+
+void Song::setLikes(const int &songLikes) {
+	this->songLikes = songLikes;
+}
+

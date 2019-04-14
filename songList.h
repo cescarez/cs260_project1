@@ -16,30 +16,29 @@ public:
 	//destructor
 	~SongList();
 	//accessor functions (aka "getters")
-
+	node getSongListHead() const;
+	int getSongListSize();
+	void printSongList() const;
 	//mutator functions (aka "setters")
-	void loadSongList(const char storageFile[]); //loads song file
-	void addSong(Song &aSong);
-	void optionAddSong();
-	int selectRemove(); //this function does not modify any objects, 
-						 //but enables user to access removeSong function
-	void removeSong(int removeIndex);
-	void writeLibrary(const char storageFile[]);
+	void loadSongList(const char storageFile[]); 
+	void addSong(const Song &aSong);
+	void removeSong(const char *searchTerm[]);
+	void filterSongList(const int &minViewCounts);
+	void saveSongList(const char storageFile[]);
 	
 private:
+	node *head;
+	int songListSize;
 	struct node {
-		Song data;
-		node *next;
-		//deep copy passed in song data to this->data
+		Song songData;
+		node *nextSong;
+		//deep copy passed in to this. Relies on overloaded assignment operator.
 		node(const Song& aSong) {
-			this->data = Song& aSong;
+			this->songData = aSong;
 			//set next to null
-			next = nullptr;
+			nextSong = nullptr;
 		}
 	};
-	node *head, *tail;
-	int librarySize;
-	void compareTerms(char searchTerm[]) const;
 };
 
 
