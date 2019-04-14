@@ -7,8 +7,10 @@
 #define SONG_H
 
 #include "inputTools.h"
+#include <cstring>
+#include <iostream>
 
-const int MAX_SIZE = 100;
+using namespace std;
 
 class Song {	
 public:
@@ -24,13 +26,14 @@ public:
 	friend ostream &operator<< (ostream &output, const Song &tempSong);
 	//accessor functions
 	//returns local variable (argument) equal to private instance data member
-	void printSong(const Song &aSong) const {
-		cout << aSong;	//function relies on overloaded extraction operator
-	}
 	void getTitle(char songTitle[]) const;
 	void getLength(int &songLengthMin, int &songLengthSec) const;
 	void getViews(int &songViews) const;
 	void getLikes(int &songLikes) const;
+	//function relies on overloaded extraction operator
+	void printSong(const Song &aSong) const {
+		cout << aSong;	
+	}
 	//mutator functions
 	//sets local instance members to passed in values
 	void setTitle(const char songTitle[]);

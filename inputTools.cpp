@@ -1,6 +1,7 @@
 //Christabel Escarez
 //CS260 - Spring 2019
 //Project #1 - inputTools.cpp
+//Sources: CS162 addressBookE example program
 //implementation file for standard input tools
 
 #include "inputTools.h"
@@ -30,6 +31,7 @@ char checkInput (char &response) {
 			response = tolower(response);	
 			responseCount++;
 		} else {
+			//exit program when invalid inputs > MAX_RESPONSE
 			cout << "Error. Too many invalid inputs. Exiting MusicBox." << endl;
 			exit(1);
 		}
@@ -101,6 +103,7 @@ bool checkCString(char response[]) {
 	else
 		return true;
 }
+
 
 int readInt(const char prompt[],  const int &maxThreshold)
 {

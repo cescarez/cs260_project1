@@ -61,8 +61,9 @@ const Song& Song::operator= (const Song& otherSong) {
 } 
 
 //overloaded extraction operator is a Song FRIEND (nonmember function)
-ostream& operator<< (ostream &output, const Song &tempSong) {
-	output << tempSong.songTitle << tempSong.songLengthMin << tempSong.songLengthSec << tempSong.songViews << tempSong.songLikes << endl;  
+ostream &operator<< (ostream &output, const Song &tempSong) {
+	output << tempSong.songTitle << tempSong.songLengthMin << tempSong.songLengthSec 
+		   << tempSong.songViews << tempSong.songLikes << endl;  
 	return output;
 }
 
