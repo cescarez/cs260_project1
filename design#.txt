@@ -30,6 +30,10 @@ Artist List: display design
 
 Song list: display design
 
+Genre: enum or cstring
+
+checkCString: void or bool
+
 --
 
 Invalid Inputs:
