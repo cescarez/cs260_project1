@@ -246,12 +246,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 9 - ((8 * winheight(0) + 25) / 51)
+let s:l = 7 - ((6 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-9
-normal! 021|
+7
+normal! 0
 tabnext
 edit inputTools.cpp
 set splitbelow splitright
@@ -937,12 +937,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 25) / 51)
+let s:l = 7 - ((6 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
-normal! 0
+7
+normal! 014|
 wincmd w
 argglobal
 if bufexists("songList.h") | buffer songList.h | else | edit songList.h | endif
@@ -1211,12 +1211,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 25) / 51)
+let s:l = 6 - ((5 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
-normal! 028|
+6
+normal! 0
 wincmd w
 argglobal
 if bufexists("artist.h") | buffer artist.h | else | edit artist.h | endif
@@ -1485,11 +1485,11 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 25) / 51)
+let s:l = 8 - ((7 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+8
 normal! 0
 wincmd w
 argglobal
@@ -1622,7 +1622,7 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
 exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
-tabnext 3
+tabnext 2
 badd +4 main.cpp
 badd +6 inputTools.cpp
 badd +2 inputTools.h
@@ -1634,7 +1634,7 @@ badd +5 linkedList.cpp
 badd +10 linkedList.h
 badd +1 recordLabel.cpp
 badd +1 recordLabel.h
-badd +28 makefile
+badd +20 makefile
 badd +0 artistList.h
 badd +0 artistList.cpp
 badd +0 songList.h

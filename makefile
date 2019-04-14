@@ -5,21 +5,20 @@
 CC = g++
 CPPFLAGS = -Wall -g -std-c++11
 
-main: main.o inputTools.o song.o songList.o artist.o artistList.o linkedList.o
+main: main.o inputTools.o song.o songList.o artist.o artistList.o
 
-main.o: inputTools.h song.h artist.h recordLabel.h linkedList.h
+main.o: inputTools.h song.h artist.h recordLabel.h
 
 inputTools.o: inputTools.h
 
-song.o: song.h linkedList.h
+song.o: song.h
 
-songList.o: songList.h linkedList.h
+songList.o: songList.h
 
-artist.o: artist.h linkedList.h
+artist.o: artist.h songList.h
 
-artistList.o: song.h artist.h artistList.h linkedList.h
+artistList.o: artist.h artistList.h 
 
-linkedList.o: linkedList.h
 
 .PHONY: clean memcheck
 clean:

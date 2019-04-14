@@ -3,5 +3,5 @@
 //Project #1 - artist.cpp
 //implementation file for Artist class
 
-#include "song.h"
+#include "songList.h"
 #include "artist.h"

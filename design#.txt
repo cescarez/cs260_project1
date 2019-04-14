@@ -1,18 +1,24 @@
 Christabel Escarez
 CS260 - Spring 2019
 Project #1 Design and Test Plan
-
+Sources: https://blog.testlodge.com/how-to-write-test-cases-for-software-with-sample/
 
 Design Considerations:
 
-Number / type of ADTs
+The first design consideration I had was considering what experience I wanted the user to have. While I could program a database of artists and their songs, I had to also think about why a user would be trying to access this information. In considering the user and the program's use case, I then thought of data flow for an ideal user experience. 
 
-Data Flow
+For this program and the target user of a record label employee tracking their artists, the user would first launch the program. The user will then receive a welcome message and a menu, allowing the user to view the complete artist list, search the artist list (by artist name, or song title), modify artist info, add an artist, remove an artist.
+
+If the user opts to modify artist info, there is a second menu so the user may view the artist's top songs, their top headline, when they joined the record label, what genre their music is, search for an artist's song by title to view song popularity, or view the complete list of the selected artist's songs. 
+
+If the user opts to view the list of songs, following the display of the song list, the user is shown a menu to
+add a song, remove a song, and remove songs below a specified number of view counts.
+
+
+Number / type of ADTs: 
 
 Invalid Inputs
-
-
-
+____
 ADTs:
 
 InputTools
@@ -38,13 +44,14 @@ InputTools
         output: either a legal cstring or an error message requesting another input, 
             to be repeated three times before program exits with error message.
 
-LinkedList
-
-
 Song
 
+SongList
 
 Artist
 
+ArtistList
+    ArtistList(): constructor
+    ~ArtistList(): destructor
+    ArtistList(ArtistList &anArtistList): copy constructor
 
-RecordLabel

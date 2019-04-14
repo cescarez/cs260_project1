@@ -3,7 +3,6 @@
 //Project #1 - songList.cpp
 //implementation file for SongList class
 
-#include "artist.h"
-#include "artistList.h"
-#include "linkedList.h"
+#include "song.h"
+#include "songList.h"
 
