@@ -19,6 +19,7 @@ public:
 	//copy constructor
 	SongList(const SongList &otherSongList);
 	//overloaded functions
+	const SongList& operator= (const SongList& otherSongList);
 
 	//accessor functions
 	int getSongListSize();
@@ -29,22 +30,23 @@ public:
 	void removeSong(const char *searchTerm[]);
 	void filterSongList(const int &minViewCounts);
 	void saveSongList(const char storageFile[]);
-	
-private:
+	//node definition made public to allow functions to return node value(s)
 	struct node {
 		Song songData;
 		node *nextSong;
-		//deep copy passed in to this. Relies on overloaded assignment operator.
+		//node constructor
 		node(const Song &aSong) {
 			this->songData = aSong;
-			//set next to null
 			nextSong = nullptr;
 		};
+		//node copy constructor
 		node(const node *otherNode) {
 			this->songData = otherNode->songData;
 			this->nextSong = otherNode->nextSong;
 		};
 	};
+
+private:
 	node *head;
 	int songListSize;
 	//function returns pointer node = head 

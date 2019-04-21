@@ -8,9 +8,19 @@
 
 
 /*ARTIST CONSTRUCTOR*/
-
+Artist() {
+	artistName = new char[strlen("I forget their name...")+1];
+	strcpy(artistName, "I forget their name...");
+	artistHeadline = new char[strlen("Still too underground for major media coverage.")+1];
+	strcpy(artistHeadline, "Still too underground for major media coverage.");
+	artistGenre = unknown;
+	artistSongList.head = nullptr;
+	artistSongList.size = 0;
+}
 
 /*ARTIST DESTRUCTOR*/
+
+~Artist();
 
 //*ARTIST COPY CONSTRUCTOR*/
 
@@ -45,5 +55,6 @@ void ArtistList::setJoinYear(const int &artistJoinYear) {
 
 void ArtistList:setSongList {
 	this->artistSongList = aSongList;
+
 }
 

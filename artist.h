@@ -39,7 +39,7 @@ public:
 private:
 	char *artistName;
 	char *artistHeadline;
-	enum artistGenre { rock, r&b, pop, indie, country };
+	enum artistGenre { unknown, indie, rock, pop, r&b };
 	int *artistJoinYear;
 	SongList artistSongList;
 };

@@ -28,7 +28,7 @@ Popularity: by veiws or likes
 
 Artist List: display design
 
-Song list: display design
+Song list: display design, maximum number of songs
 
 Genre: enum or cstring
 
@@ -43,40 +43,5 @@ Each menu user input will be checked for legal usage, giving the user three atte
 Number / type of ADTs: 
 
 
-____
-ADTs:
 
-InputTools
-    readInt(): read integer input
-        input: cstring prompt requesting an integer from the user
-        output: a legal integer
-    readChar(): read character input
-        input: cstring prompt requesting a character from the user
-        output: a legal character
-    readString(): read cstring input
-        input: cstring prompt requesting a string from the user
-        output: a legal cstring
-    checkInput(): check integer input
-        input: an integer
-        output: either a legal integer or an error message requesting another input, 
-            to be repeated three times before program exits with error message.
-    checkInput(): check character input
-        input: a character
-        output: either a legal character or an error message requesting another input, 
-            to be repeated three times before program exits with error message.
-    checkString(): check cstring input
-        input: a string of characters
-        output: either a legal cstring or an error message requesting another input, 
-            to be repeated three times before program exits with error message.
-
-Song
-
-SongList
-
-Artist
-
-ArtistList
-    ArtistList(): constructor
-    ~ArtistList(): destructor
-    ArtistList(ArtistList &anArtistList): copy constructor
 

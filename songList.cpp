@@ -17,7 +17,8 @@ SongList::SongList() {
 	songListSize = 0;
 }
 
-SongList::SongList(int &songListSize, const char storageFile[]) {
+SongList::SongList(int &songListSize, const char artistName[]) {
+	char *storageFile
 	head = nullptr;
 	this->songListSize = songListSize;
 	loadSongList(storageFile);
@@ -57,8 +58,8 @@ SongList::SongList(const SongList &otherSongList) {
 	}	
 } 
 
-/*SONG OVERLOADED OPERATORS*/
-const Song& Song::operator= (const Song& otherSong) {
+/*SONG_LIST OVERLOADED OPERATORS*/
+const SongList& SongList::operator= (const SongList& otherSongList) {
 	//create temporary local variable to store private value retrieved via accessor function
 	char tempTitle[MAX_SIZE];
 	
@@ -76,6 +77,7 @@ const Song& Song::operator= (const Song& otherSong) {
 	return *this;
 } 
 
+
 //overloaded extraction operator is a Song FRIEND (nonmember function)
 ostream &operator<< (ostream &output, const Song &tempSong) {
 	output << tempSong.songTitle << tempSong.songLengthMin << tempSong.songLengthSec 
@@ -83,40 +85,51 @@ ostream &operator<< (ostream &output, const Song &tempSong) {
 	return output;
 }
 
-/*SONG_LIST OVERLOADED OPERATORS*/
 
 //---------------------------------------//
 /*SONG_LIST ACCESSOR FUNCTION DEFINITIONS*/
 //---------------------------------------//
 
+int SongList::getSongListSize() {
+	return songListSize;
+}
+
 //BELOW IS ATTEMPT AT RECURSIVE FN, 
 //ERROR DUE TO MEMBER PUBLIC/PRIVATE SCOPE
-//void SongList::printSongList(node *head) {
-	//node *currentSong = nullptr;
-	//currentSong = getSongListHead();
-	//if(currentSong == nullptr) {
-		//cout << "List is empty." << endl;
-	//} else {
-		//cout << currentSong->songData << endl;
-		//printSongList(currentSong->nextSong);
-	//}
-//}
-
-void SongList::printSongList() const {	
-	node *currentSong;
+void SongList::printSongList() const {
+	node *currentSong = nullptr;
 	currentSong = head;
-	if (head == nullptr) {
-		cout << "Library is empty." << endl;
+	if(currentSong == nullptr) {
+		cout << "List is empty." << endl;
 	} else {
-		while (currentSong != nullptr) {
-			cout << currentSong->songData << endl;
-			currentSong = currentSong->nextSong;
-		}	
+		cout << currentSong->songData << endl;
+		printSongList(currentSong->nextSong);
 	}
 }
+//BELOW IS printSongList() AS AN ITERATIVE FUNCTION
+//void SongList::printSongList() const {	
+	//node *currentSong;
+	//currentSong = head;
+	//if (head == nullptr) {
+		//cout << "Library is empty." << endl;
+	//} else {
+		//while (currentSong != nullptr) {
+			//cout << currentSong->songData << endl;
+			//currentSong = currentSong->nextSong;
+		//}	
+	//}
+//}
 
 //--------------------------------------//
 /*SONG_LIST MUTATOR FUNCTION DEFINITIONS*/
 //--------------------------------------//
+node SongList::*getSongListHead() const {
+	return head;
+}
 
+void loadSongList(const char storageFile[]); 
+	void addSong(const Song &aSong);
+	void removeSong(const char *searchTerm[]);
+	void filterSongList(const int &minViewCounts);
+	void saveSongList(const char storageFile[]);
 
