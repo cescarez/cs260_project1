@@ -7,6 +7,7 @@
 #include "inputTools.h"
 #include <cstring>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -120,7 +121,7 @@ int readInt(const char prompt[],  const int &maxThreshold)
 	return response;
 }
 
-char readString (const char prompt[], char response[])
+void readString (const char prompt[], char response[])
 {
 	cout << endl << prompt;
 

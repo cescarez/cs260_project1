@@ -20,22 +20,22 @@ public:
 	SongList(const SongList &otherSongList);
 	//overloaded functions
 	const SongList& operator= (const SongList& otherSongList);
-
 	//accessor functions
-	int getSongListSize();
-	void printSongList() const;
+	int getSongListSize() const;
+	void printSongList(ostream &output) const; //recursive
 	//mutator functions
 	void loadSongList(const char storageFile[]); 
-	void addSong(const Song &aSong);
-	void removeSong(const char *searchTerm[]);
-	void filterSongList(const int &minViewCounts);
+	void addSong(const Song &aSong); //recursive
+	bool removeSong(const char *searchTerm); //recursive
+	//void filterSongList(const int &minViewCounts);
 	void saveSongList(const char storageFile[]);
-	//node definition made public to allow functions to return node value(s)
+
+private:
 	struct node {
-		Song songData;
+		Song *songData;
 		node *nextSong;
 		//node constructor
-		node(const Song &aSong) {
+		node(Song aSong) {
 			this->songData = aSong;
 			nextSong = nullptr;
 		};
@@ -45,12 +45,14 @@ public:
 			this->nextSong = otherNode->nextSong;
 		};
 	};
-
-private:
 	node *head;
 	int songListSize;
-	//function returns pointer node = head 
-	node *getSongListHead() const;
+	//helper functions
+	void printSongList(ostream &output, node *currHead) const;
+	void addSong(const Song &aSong, node *&currHead);
+	bool removeSong(const char *searchTearm, node *&currHead);
+	void destroy(node *& currHead);
+	void copyList(node *sourceHead, node *&destHead);
 };
 
 

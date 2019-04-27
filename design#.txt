@@ -34,6 +34,8 @@ Genre: enum or cstring
 
 checkCString: void or bool
 
+Where to put recursive functions.
+
 --
 
 Invalid Inputs:

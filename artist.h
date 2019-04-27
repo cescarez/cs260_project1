@@ -9,6 +9,8 @@
 #include "inputTools.h"
 #include "songList.h"
 
+enum genre { unknown, indie, rock, pop, r&b };
+
 class Artist {	
 public:
 	//constructor
@@ -19,28 +21,31 @@ public:
 	Artist(const Artist &otherArtist);
 	//overloaded assignment operator
 	const Artist &operator= (const Artist &otherArtist);
+	//overloaded comparison operator
+	bool operator<(const Artist& otherArtist) const;
 	//overloaded ostream operator
 	friend ostream &operator<< (ostream &output, const Artist &tempArtist);
 	//accessor functions
-	//returns local variable (argument) equal to private instance data member
-	void printSong(const Song &aSong) const;
+	void printArtist(const Artist &anArtist) const {
+		cout << anArtist;
+	}
 	void getName(char artistName[]) const;
 	void getHeadline(char headline[]) const;
 	void getGenre(artistGenre genre) const;
 	void getJoinYear(int &artistJoinYear) const;
-	void getSongList(SongList &aSongList) const;
+	void getSongList(SongList *aSongList) const;
 	//mutator functions
 	//sets local instance members to passed in values
 	void setName(const char artistName[]);
-	void setHeadline(const char headline[]);
+	void setHeadline(const char artistHeadline[]);
 	void setGenre(const artistGenre genre);
 	void setJoinYear(const int &artistJoinYear);
 	void setSongList(const SongList &aSongList);
 private:
 	char *artistName;
 	char *artistHeadline;
-	enum artistGenre { unknown, indie, rock, pop, r&b };
-	int *artistJoinYear;
+	genre artistGenre;
+	int artistJoinYear;
 	SongList artistSongList;
 };
 

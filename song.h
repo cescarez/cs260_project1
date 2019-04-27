@@ -22,11 +22,16 @@ public:
 	Song(const Song &otherSong);
 	//overloaded assignment operator
 	const Song& operator= (const Song& otherSong);
+	//overloaded equality operator
+	bool operator==(const Song& otherSong) const;
+	//overloaded comparison operator
+	bool operator<(const Song& otherSong) const;
 	//overloaded ostream operator
 	friend ostream &operator<< (ostream &output, const Song &tempSong);
 	//accessor functions
 	//returns local variable (argument) equal to private instance data member
 	void getTitle(char songTitle[]) const;
+	const char * getTitle() const;
 	void getLength(int &songLengthMin, int &songLengthSec) const;
 	void getViews(int &songViews) const;
 	void getLikes(int &songLikes) const;

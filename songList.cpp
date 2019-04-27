@@ -1,13 +1,12 @@
 //Christabel Escarez
 //CS260 - Spring 2019
-
-
 //Project #1 - songList.cpp
 //implementation file for SongList class
 
 #include "songList.h"
 #include "song.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -18,7 +17,7 @@ SongList::SongList() {
 }
 
 SongList::SongList(int &songListSize, const char artistName[]) {
-	char *storageFile
+	char *storageFile;
 	head = nullptr;
 	this->songListSize = songListSize;
 	loadSongList(storageFile);
@@ -60,25 +59,15 @@ SongList::SongList(const SongList &otherSongList) {
 
 /*SONG_LIST OVERLOADED OPERATORS*/
 const SongList& SongList::operator= (const SongList& otherSongList) {
-	//create temporary local variable to store private value retrieved via accessor function
-	char tempTitle[MAX_SIZE];
-	
-	//local variables created to remove possibility of invalidating the dynamic arrays
-	//during variable setting (when "this" values are deleted)
-	if (this != &otherSong) { //this if statement is to avoid self-assignment
-		/*access private variables and return local variables*/
-		otherSong.getTitle(tempTitle);
-		//set the received local variables as the member values	
-		this->setTitle(tempTitle);	
-		this->setLength(otherSong.songLengthMin, otherSong.songLengthSec);
-		this->setViews(otherSong.songViews);	
-		this->setLikes(otherSong.songLikes);
+	if (this == &otherSongList) {
+		return *this;
 	}
+	destroy(this->head);
+	copyList(otherSongList.head, this->head);
 	return *this;
 } 
-
-
-//overloaded extraction operator is a Song FRIEND (nonmember function)
+ 
+///////////////////////////////////////////////////////////////////////////format output
 ostream &operator<< (ostream &output, const Song &tempSong) {
 	output << tempSong.songTitle << tempSong.songLengthMin << tempSong.songLengthSec 
 		   << tempSong.songViews << tempSong.songLikes << endl;  
@@ -89,47 +78,133 @@ ostream &operator<< (ostream &output, const Song &tempSong) {
 //---------------------------------------//
 /*SONG_LIST ACCESSOR FUNCTION DEFINITIONS*/
 //---------------------------------------//
-
-int SongList::getSongListSize() {
+int SongList::getSongListSize() const{
 	return songListSize;
 }
 
-//BELOW IS ATTEMPT AT RECURSIVE FN, 
-//ERROR DUE TO MEMBER PUBLIC/PRIVATE SCOPE
-void SongList::printSongList() const {
-	node *currentSong = nullptr;
-	currentSong = head;
-	if(currentSong == nullptr) {
-		cout << "List is empty." << endl;
-	} else {
-		cout << currentSong->songData << endl;
-		printSongList(currentSong->nextSong);
-	}
+void SongList::printSongList(ostream &output) const {
+	printSongList(output, head);
 }
-//BELOW IS printSongList() AS AN ITERATIVE FUNCTION
-//void SongList::printSongList() const {	
-	//node *currentSong;
-	//currentSong = head;
-	//if (head == nullptr) {
-		//cout << "Library is empty." << endl;
-	//} else {
-		//while (currentSong != nullptr) {
-			//cout << currentSong->songData << endl;
-			//currentSong = currentSong->nextSong;
-		//}	
-	//}
-//}
 
 //--------------------------------------//
 /*SONG_LIST MUTATOR FUNCTION DEFINITIONS*/
 //--------------------------------------//
-node SongList::*getSongListHead() const {
-	return head;
+void SongList::loadSongList(const char storageFile[]) {
+	//create temporary variables to store values retrieved from accessor functions
+	char tempSongTitle[MAX_SIZE];
+	int tempLengthMin = 0, tempLengthSec = 0, tempLikes = 0, tempViews = 0;
+	//create local Song object to store the above inputs for addSong() to add to end of list
+	Song tempSong;
+	ifstream songsFile;
+	songsFile.open(storageFile);
+	//check for correct file name in main program
+	while(!songsFile) {
+		songsFile.clear();
+		cout << "Error. Library file failed to open. Exiting CS260 Record Label Artist Roster." << endl;
+		exit(1);
+	}
+	//read file into library[]
+	songsFile.get(tempSongTitle, MAX_SIZE, ';');
+	while(!songsFile.eof()) {
+		songsFile.get();
+		songsFile >> tempLengthMin;
+		songsFile.get();
+		songsFile >> tempLengthSec;
+		songsFile.get();
+		songsFile >> tempViews;
+		songsFile.get();
+		songsFile >> tempLikes;
+		songsFile.get();
+		songsFile.ignore(100, '\n');
+		songsFile.clear();
+		//associate inputs with temp Song instance
+		tempSong.setTitle(tempSongTitle);
+		tempSong.setLength(tempLengthMin, tempLengthSec);
+		tempSong.setViews(tempViews);
+		tempSong.setLikes(tempLikes);
+		//add the song instance to the library
+		addSong(tempSong); 
+		//start next song record
+		songsFile.get(tempSongTitle, MAX_SIZE, ';');
+	}
+	songsFile.close();
 }
 
-void loadSongList(const char storageFile[]); 
-	void addSong(const Song &aSong);
-	void removeSong(const char *searchTerm[]);
-	void filterSongList(const int &minViewCounts);
-	void saveSongList(const char storageFile[]);
+void SongList::addSong(const Song &aSong) {
+	addSong(aSong, head);
+	songListSize++;
+}
 
+bool SongList::removeSong(const char *searchTerm) {
+	return removeSong(searchTerm, head);
+}
+
+//void SongList::filterSongList(const int &minViewCounts) {
+
+//}
+
+void SongList::saveSongList(const char storageFile[]) {
+
+}
+
+//--------------------------------------//
+/*SONG_LIST HELPER FUNCTION DEFINITIONS*/
+//--------------------------------------//
+void SongList::printSongList(ostream &output, node *currHead) const {
+	if (currHead == nullptr) {
+		return;
+	}
+	output << *(currHead->songData) << " ";
+	printSongList(output, currHead->nextSong);
+	
+}
+
+void SongList::addSong(const Song& aSong, node *&currHead)
+{
+	if (currHead == nullptr) {
+		currHead = new node(aSong);
+	} else {
+		if (aSong < *(currHead->songData)) { //linked list sorted by view count
+			node * newNode = new node(aSong);
+			newNode->nextSong = currHead;
+			currHead = newNode;
+		} else {
+			addSong(aSong, currHead->nextSong);
+		}
+	}
+}
+
+bool SongList::removeSong(const char *searchTerm, node *&currHead) {
+	if (currHead == nullptr) {
+		cout << "List is empty. No nodes left to remove." << endl;
+		return false;
+	} else {
+		//check node for song title to compare against search term
+		char *currentSong = new char[strlen(currHead->songData->getTitle())+1];
+		if (strcmp(currentSong, searchTerm) == 0) {
+			node *temp = currHead; 
+			currHead = currHead->nextSong; 
+			delete temp->songData; 
+			delete temp;
+			temp = nullptr;
+			return true;
+		} else {
+			//if song title doesn't match current node, repeat function on next node
+			return removeSong(searchTerm, currHead->nextSong);
+		}
+	}
+}
+
+void SongList::destroy(node *&currHead) {
+	if (currHead != nullptr) {
+		destroy(currHead->nextSong);
+		delete currHead;
+	}
+}
+
+void SongList::copyList(node *sourceHead, node *&destHead) {
+	if (sourceHead) {
+		destHead = new node(*(sourceHead->songData));
+		copyList(sourceHead->nextSong, destHead->nextSong);
+	}
+}

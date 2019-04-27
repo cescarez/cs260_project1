@@ -45,7 +45,6 @@ Song::Song(const Song &otherSong) {
 const Song& Song::operator= (const Song& otherSong) {
 	//create temporary local variable to store private value retrieved via accessor function
 	char tempTitle[MAX_SIZE];
-	
 	//local variables created to remove possibility of invalidating the dynamic arrays
 	//during variable setting (when "this" values are deleted)
 	if (this != &otherSong) { //this if statement is to avoid self-assignment
@@ -60,7 +59,23 @@ const Song& Song::operator= (const Song& otherSong) {
 	return *this;
 } 
 
-//overloaded extraction operator is a Song FRIEND (nonmember function)
+bool Song::operator==(const Song& otherSong) const {
+	if (strcmp(this->songTitle, otherSong.songTitle) == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+bool Song::operator<(const Song& otherSong) const {
+	if (this->songViews < otherSong.songViews) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/////////////format the below////////////////////////////////////////////////
 ostream &operator<< (ostream &output, const Song &tempSong) {
 	output << tempSong.songTitle << tempSong.songLengthMin << tempSong.songLengthSec 
 		   << tempSong.songViews << tempSong.songLikes << endl;  
@@ -70,9 +85,11 @@ ostream &operator<< (ostream &output, const Song &tempSong) {
 //----------------------------------//
 /*SONG ACCESSOR FUNCTION DEFINITIONS*/
 //----------------------------------//
-
 void Song::getTitle(char songTitle[]) const {
 	strcpy(songTitle, this->songTitle);
+}
+const char * Song::getTitle() const {
+	return this->songTitle;
 }
 
 void Song::getLength(int &songLengthMin, int &songLengthSec) const {

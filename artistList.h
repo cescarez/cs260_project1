@@ -15,6 +15,10 @@ public:
 	ArtistList(int artistListSize, const char storageFile[]);
 	//destructor
 	~ArtistList();
+	//copy constructor
+	ArtistList(const ArtistList &otherArtistList);
+	//overloaded functions
+	const ArtistList& operator= (const ArtistList &otherArtistList);
 	//accessor functions (aka "getters")
 	node getArtistListHead() const;
 	int getArtistListSize();

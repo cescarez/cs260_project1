@@ -18,6 +18,6 @@ bool checkCstring(char response[]);
 //value back to the calling environment
 int readInt (const char prompt[], const int &maxThreshold);
 char readChar (const char prompt[]);
-char readString (const char prompt[], char inputString[]);
+void readString (const char prompt[], char inputString[]);
 
 #endif
